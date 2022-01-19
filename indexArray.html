@@ -1,0 +1,96 @@
+<!-- Funcao do grafico, sendo definida com Array, onde sempre que o usuario muda de input, o grafico eh atualizado -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
+    integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+
+  <title>
+    Exercicio fabiano
+  </title>
+  <h1>Exercicio do fabiano</h1>
+  <style>
+    .chart {
+      width: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <label for="propriedade1">propriedade 1</label>
+    <input type="number" p="0" onchange="funcao(event)"> <!--deve ser event -->
+  </div>
+  <div>
+    <label for="propriedade2">propriedade 2</label>
+    <input type="number" p="1" onchange="funcao(event)">
+  </div>
+  <div>
+    <label for="propriedade3">propriedade 3</label>
+    <input type="number" p="2" onchange="funcao(event)">
+  </div>
+  <div>
+    <label for="propriedade4">propriedade 4</label>
+    <input type="number" p="3" onchange="funcao(event)">
+  </div>
+  <div>
+    <label for="propriedade5">propriedade 5</label>
+    <input type="number" p="4" onchange="funcao(event)">
+  </div>
+  <div>
+    <label for="propriedade6">propriedade 6</label>
+    <input type="number" p="5" onchange="funcao(event)">
+  </div>
+  <div class="chart">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <!-- Javascript -->
+
+  <script>
+ 
+    var obj = []; // arranja o array, sem definir quantas posicoes e sem definir seus elementos.
+
+    function funcao(mov) { // o parametro da funcao pode ser alterado a qualquer momento.
+
+      const input = mov.target; // pega o valor 'puro' do input 
+                               // ex: <input type="number" p="0" onchange="funcao(event)">
+
+      obj[input.getAttribute('p')] = input.value; //// pega o valor verdadeiro do input,o valor que for colocado pelo usuario, e adiciona ao array, por meio do atributo p,que foi previamente definido nos inputs do html. Dessa forma o array obj recebe em suas posicoes os valores definidos pelo usuario.                                
+                      
+      chart.update(); // atualiza o grafico, a cada interacao do usuario, onde a funcao 'funcao' eh chamada.
+    }
+
+    chart = new Chart(
+      document.getElementById('myChart'),
+      {
+        type: 'line',
+        data: {
+          labels: [
+            'p1',
+            'p2',
+            'p3',
+            'p4',
+            'p5',
+            'p6',
+          ],
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: obj,
+          }
+          ]
+        },
+        options: {}
+      }
+    );
+  </script>
+</body>
+
+</html>
